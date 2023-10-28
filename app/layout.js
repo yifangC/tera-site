@@ -1,5 +1,6 @@
 'use client'
 
+import { Analytics } from '@vercel/analytics/react';
 import './ui/global.css';
 import { ThemeProvider } from 'next-themes'
 import { Inconsolata } from 'next/font/google' 
@@ -65,7 +66,7 @@ export default function RootLayout({ children }) {
               <Footer />
             </div>
           </div>
-
+          <Analytics /> 
         </body>
       </ThemeProvider>
     </html>
