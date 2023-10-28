@@ -73,7 +73,7 @@ export default function Page() {
                 and the infrastructure beneath to understand Internet consolidation at the physical level.
               </p>
               <p className="mb-4 p">During my spare time, you can find me brewing (decent) shots of espresso, banging my head against <Link href="https://www.youtube.com/watch?v=LTyxnUZMA1k"> music</Link>, 
-                or writing unnecessarily complicated Javascript for a simple website like this one.</p>
+                or writing unnecessarily complicated Javascript for simple websites like this one.</p>
             </div>
             { /* {children} */}
             <News />
