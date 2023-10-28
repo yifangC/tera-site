@@ -19,7 +19,7 @@ const name = 'Caleb J. Wang'
 const occupation = 'CS Ph.D.' 
 const company = 'Northwestern University' 
 
-export default function Page({ children }) {
+export default function Page() {
     return (
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
 
@@ -75,7 +75,7 @@ export default function Page({ children }) {
               <p className="mb-4 p">During my spare time, you can find me brewing (decent) shots of espresso, banging my head against <Link href="https://www.youtube.com/watch?v=LTyxnUZMA1k"> music</Link>, 
                 or writing unnecessarily complicated Javascript for a simple website like this one.</p>
             </div>
-            {children}
+            { /* {children} */}
             <News />
           </div>
     

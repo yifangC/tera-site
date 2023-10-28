@@ -13,13 +13,9 @@ import Footer from './ui/Footer'
 const inconsolata = Inconsolata({
   subsets: ['latin'],
   display: 'swap',
-})
+}) 
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <ThemeProvider attribute="class">
