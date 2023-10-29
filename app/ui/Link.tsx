@@ -17,7 +17,7 @@ const CustomLink = ({ href, ...rest }: CustomLinkProps) => {
     'transition-colors',
     'duration-300',
     'font-bold',
-    (typeof href === 'string') ? 'hvr-bounce-to-top' : ''
+    'hvr-bounce-to-top'
   ].join(' ')
 
   if (isInternalLink) {
