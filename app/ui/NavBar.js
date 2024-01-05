@@ -5,7 +5,8 @@ const headerNavLinks = [
   { href: '/about', title: 'About' },
   { href: '/publications', title: 'Publications' },
   { href: '/blog/123', title: 'Blog' },
-  { href: '/cv', title: 'CV'}
+  { href: '/static/pdf/Caleb_CV_2023.pdf', title: 'CV'} 
+  // { href: '/cv', title: 'CV'}
 ]
 
 export default function NavBar() {

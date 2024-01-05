@@ -1,6 +1,14 @@
 'use client';
-import { usePathname } from 'next/navigation';
+
+import Link from '@/app/ui/Link'
 
 export default function Page() {
-    return <h2>You are currently here: {usePathname()} </h2>;
-  }
+  return Link({ href: '/cv'})
+
+
+}
+
+
+// export default function Page() {
+//     return <h2>You are currently here: {usePathname()} </h2>;
+//   }

@@ -12,7 +12,7 @@ export default function News() {
           <div className="... basis-3/4 text-left align-middle">
             {' '}
             Our work on Intercontinental Long-Haul Links is appearing in{' '}
-            {<Link href="https://dl.acm.org/sig/sigmetrics">SIGMETRICS</Link>}. Read the paper here!{' '}
+            {<Link href="https://dl.acm.org/sig/sigmetrics">SIGMETRICS</Link>}. Read the paper {<Link href="https://dl.acm.org/doi/abs/10.1145/3626778">here</Link>}!{' '}
           </div>
         </div>
 
