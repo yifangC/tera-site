@@ -4,8 +4,8 @@ import Link from './Link'
 const headerNavLinks = [
   { href: '/about', title: 'About' },
   { href: '/publications', title: 'Publications' },
-  { href: '/blog/123', title: 'Blog' },
-  { href: '/static/pdf/Caleb_CV_2023.pdf', title: 'CV'} 
+  // { href: '/blog/123', title: 'Blog' },
+  { href: '/static/pdf/cv.pdf', title: 'CV'} 
   // { href: '/cv', title: 'CV'}
 ]
 

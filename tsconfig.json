@@ -18,8 +18,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@icons/*": ["app/icons"]
     }
   },
   "include": [
@@ -28,7 +30,12 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/.lib/placeholder-data.js",
-    "scripts/seed.js"
-, "app/layout.js", "app/about/page.jsx", "app/ui/News.js", "app/ui/NavBar.js", "app/page.js"  ],
+    "scripts/seed.js",
+    "app/layout.js",
+    "app/about/page.jsx",
+    "app/ui/News.js",
+    "app/ui/NavBar.js",
+    "app/page.js"
+  ],
   "exclude": ["node_modules"]
 }
