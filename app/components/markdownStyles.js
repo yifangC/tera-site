@@ -1,8 +1,3 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
-
 import Link from "@/app/ui/Link";
 
 function StyleH1({ children }) {
@@ -29,21 +24,29 @@ function StyleP({ children }) {
   );
 }
 
-const overrideComponents = {
+function StyleUL({ children }) {
+  return (
+    <ul className="list-disc list-inside mb-4 text-lg text-gray-700 dark:text-gray-300">
+      {children}
+    </ul>
+  );
+}
+
+function StyleLI({ children }) {
+  return (
+    <li className="mb-2">
+      {children}
+    </li>
+  );
+}
+
+const MarkdownStyles = {
   h1: StyleH1,
   h2: StyleH2,
   p: StyleP,
   a: ({ href, children }) => <Link href={href}>{children}</Link>,
+  ul: StyleUL,
+  li: StyleLI,
 };
 
-export default async function RemoteMdxPage() {
-  const filePath = path.join(process.cwd(), "app", "mdtest", "main.mdx");
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data: frontmatter, content } = matter(fileContents);
-
-  return (
-    <div className="prose dark:prose-dark">
-      <MDXRemote source={content} components={overrideComponents} />
-    </div>
-  );
-}
+export default MarkdownStyles;
