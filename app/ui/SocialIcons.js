@@ -10,7 +10,7 @@ export default function SocialIcons() {
         <a href="https://github.com/theheokboi" rel="noopener noreferrer" target="_blank"> <TbBrandGithubFilled /> </a>
         <a href="https://scholar.google.com/citations?user=w6xTbnUAAAAJ&hl=en" rel="noopener noreferrer" target="_blank"> <SiGooglescholar /> </a>
         <a href="https://www.linkedin.com/in/hyes92121/" rel="noopener noreferrer" target="_blank"> <FaLinkedin /> </a>
-        <a href="https://www.instagram.com/the.heok.boi/" rel="noopener noreferrer" target="_blank"> <FaInstagram /> </a>
+        {/* <a href="https://www.instagram.com/the.heok.boi/" rel="noopener noreferrer" target="_blank"> <FaInstagram /> </a> */}
       </div>
     </IconContext.Provider>
   );

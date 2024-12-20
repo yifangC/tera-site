@@ -4,7 +4,7 @@ import RecentNews from "@/app/components/RecentNews";
 import NextImage from "next/image";
 import { Quicksand } from "next/font/google";
 
-import News from "@/app/ui/News";
+// import News from "@/app/ui/News";
 import SocialIcons from "@/app/ui/SocialIcons";
 
 const quicksand = Quicksand({

@@ -36,6 +36,6 @@
     "app/ui/News.js",
     "app/ui/NavBar.js",
     "app/page.js"
-  ],
+, "app/publications/page.js"  ],
   "exclude": ["node_modules"]
 }
