@@ -40,7 +40,6 @@ export default async function Page() {
         <div className="prose max-w-none pt-8 pb-2 dark:prose-dark xl:col-span-2">
           <AboutSection />
           <RecentNews />
-          {/* <News /> */}
         </div>
         {/* End of main content */}
       </div>

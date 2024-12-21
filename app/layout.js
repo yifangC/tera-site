@@ -22,7 +22,7 @@ function Header({ inconsolata }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // Change transparency after scrolling 50px
+      setIsScrolled(window.scrollY > 40); // Change transparency after scrolling 40px 
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -45,7 +45,7 @@ function Header({ inconsolata }) {
         <DynamicLink className="hvr-bounce-to-top" inconsolata={inconsolata} />
       </div>
 
-      <div className="flex items-center text-base leading-5 space-x-4">
+      <div className="flex items-center text-base leading-5 space-x-4"> 
         {/* Navigation Bar */}
         <NavBar />
         {/* Theme Switch */}
