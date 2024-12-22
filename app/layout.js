@@ -34,7 +34,7 @@ function Header({ inconsolata }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 flex items-center justify-between py-4 transition-colors duration-300 ${
+      className={`sticky top-0 z-50 flex items-center justify-between py-6 transition-colors duration-300 ${
         isScrolled
           ? 'bg-white dark:bg-gray-700 backdrop-blur-md border-b border-gray-300/50 dark:border-gray-700/50'
           : 'bg-transparent'
