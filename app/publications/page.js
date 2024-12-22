@@ -38,8 +38,9 @@ const ConferenceBadge = ({ conference }) => {
   const fontStyles = `font-bold text-sm ${rubik.className}`;
   const spacingStyles = "px-4 py-0.5 rounded";
   const layoutStyles = "mr-4";
+  const shadowStyles = "shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300";
 
-  const combinedClassName = `${bgStyles} ${fontStyles} ${spacingStyles} ${layoutStyles}`;
+  const combinedClassName = `${bgStyles} ${fontStyles} ${spacingStyles} ${layoutStyles} ${shadowStyles}`; 
 
   return conference ? (
     <div className={combinedClassName}>{conference}</div>

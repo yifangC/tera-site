@@ -18,7 +18,8 @@ export default async function Page() {
       <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
         <div className="flex flex-col items-center pt-8">
           <NextImage
-            className="h-64 w-64"
+            // className="h-64 w-64"
+            className="h-64 w-64 rounded shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300" 
             src={"/static/images/headshot.jpg"}
             width={256}
             height={256}

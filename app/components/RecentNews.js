@@ -20,11 +20,13 @@ const DateBadge = ({ date }) => {
   const fontStyles = `font-bold text-md ${rubik.className}`;
   const spacingStyles = "px-4 py-0.5 rounded";
   const layoutStyles = "mr-4 mt-1";
+  const shadowStyles = "shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300";
 
-  const combinedClassName = `${bgStyles} ${fontStyles} ${spacingStyles} ${layoutStyles}`;
+  const combinedClassName = `${bgStyles} ${fontStyles} ${spacingStyles} ${layoutStyles} ${shadowStyles}`; 
 
   return date ? <div className={combinedClassName}>{date}</div> : null;
 };
+
 
 function NewsItem({ date, children }) {
   return (
