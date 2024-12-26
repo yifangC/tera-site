@@ -1,7 +1,7 @@
 // import siteMetadata from '@/data/siteMetadata'
 
 const siteMetadata = {
-  author: 'Caleb J. Wang' 
+  author: 'Yi-Fang Cheng' 
 }
 
 const getGreetingMessage = () => {

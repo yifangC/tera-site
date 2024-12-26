@@ -5,7 +5,8 @@ const headerNavLinks = [
   { href: '/about', title: 'about' },
   { href: '/experiences', title: 'experiences' }, 
   { href: '/publications', title: 'publications' },
-  { href: '/notes', title: 'notes' },   
+  // { href: '/notes', title: 'notes' },   
+  { href: '/visualizations', title: 'visualizations' },
   { href: '/static/pdf/cv.pdf', title: 'cv'}  
 ]
 

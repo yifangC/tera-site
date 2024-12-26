@@ -20,7 +20,7 @@ export default async function Page() {
           <NextImage
             // className="h-64 w-64"
             className="h-64 w-64 rounded shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300" 
-            src={"/static/images/headshot.jpg"}
+            src={"/static/images/yi-fang.jpg"}
             width={256}
             height={256}
           />
@@ -28,7 +28,7 @@ export default async function Page() {
             <div
               className={`pt-4 pb-2 text-xl text-gray-700 dark:text-gray-300 ${quicksand.className}`}
             >
-              Room 3416 @ Seeley G. Mudd Evanston, IL, 60208
+              
             </div>
 
             <div className="flex flex-row space-x-3 pt-6">

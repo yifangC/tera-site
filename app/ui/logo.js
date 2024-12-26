@@ -13,11 +13,11 @@ const DynamicLink = ({ className, inconsolata }) => {
       className={`hvr-bounce-to-top text-4xl font-extrabold text-gray-700 dark:text-gray-300 hover:text-white-900 dark:hover:text-gray-700 transition-colors duration-300 ${className} ${inconsolata.className}`}
     >
       {isHomePage ? (
-        '~/C.'
+        '~/Y-F.'
       ) : (
         <>
-          <span className="font-bold">Caleb</span>{' '}
-          <span className="font-normal">J. Wang</span> 
+          <span className="font-bold">Yi-Fang</span>{' '}
+          <span className="font-normal">Tera Cheng</span> 
         </>
       )}
     </Link>

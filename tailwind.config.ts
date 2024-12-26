@@ -27,9 +27,9 @@ const config: Config = {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: colors.violet,
-        pink: colors.pink,
-        gray: colors.neutral,
+        primary: colors.yellow,
+        pink: colors.amber,
+        gray: colors.neutral
       },
     },
     keyframes: {
