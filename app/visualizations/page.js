@@ -136,7 +136,10 @@ const data = [
 export default function VizPage() {
   return (
     <div>
-      <h1>Tera is a bad girl. Wombatbuo is not happy </h1>
+      <h1>
+        Vowel space. The ellipses illustrate the spread of the vowel /æ/ across
+        F1 and F2 values with 95% confidence intervals by speaker group.{" "}
+      </h1>
       <ScatterPlot data={data} />
     </div>
   );

@@ -1,13 +1,13 @@
 // import siteMetadata from '@/data/siteMetadata'
-import Link from './Link'
+import Link from "./Link";
 
 const headerNavLinks = [
-  { href: '/about', title: 'about' },
-  { href: '/experiences', title: 'experiences' }, 
-  { href: '/publications', title: 'publications' },
-  { href: '/visualizations', title: 'visualizations' },
-  { href: '/static/pdf/yi-fang.pdf', title: 'cv'}  
-]
+  { href: "/about", title: "about" },
+  { href: "/experiences", title: "experiences" },
+  { href: "/publications", title: "publications" },
+  { href: "/visualizations", title: "visualizations" },
+  { href: "/static/pdf/yifang-cv.pdf", title: "cv" },
+];
 
 export default function NavBar() {
   return (
