@@ -1,146 +1,133 @@
 "use client";
 
 import * as d3 from "d3";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const ScatterPlot = ({ data }) => {
-  const chartRef = useRef();
+// const ScatterPlotWithEllipses = ({ data }) => {
+//   const chartRef = useRef();
 
-  useEffect(() => {
-    const width = 928;
-    const height = 600;
-    const marginTop = 25;
-    const marginRight = 20;
-    const marginBottom = 35;
-    const marginLeft = 40;
+//   useEffect(() => {
+//     if (!data || data.length === 0) return;
 
-    const x = d3
-      .scaleLinear()
-      .domain(d3.extent(data, (d) => d.sepalLength))
-      .nice()
-      .range([marginLeft, width - marginRight]);
+//     const width = 800;
+//     const height = 600;
+//     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 
-    const y = d3
-      .scaleLinear()
-      .domain(d3.extent(data, (d) => d.sepalWidth))
-      .nice()
-      .range([height - marginBottom, marginTop]);
+//     const svg = d3.select(chartRef.current);
+//     svg.selectAll("*").remove(); // Clear existing content
 
-    const color = d3.scaleOrdinal(
-      data.map((d) => d.species),
-      d3.schemeCategory10
-    );
+//     svg
+//       .attr("viewBox", `0 0 ${width} ${height}`)
+//       .attr("width", width)
+//       .attr("height", height);
 
-    const shape = d3.scaleOrdinal(
-      data.map((d) => d.species),
-      d3.symbols.map((s) => d3.symbol().type(s)())
-    );
+//     const x = d3
+//       .scaleLinear()
+//       .domain([2000, 1000]) // Reverse scale for F2
+//       .range([margin.left, width - margin.right]);
 
-    const svg = d3.select(chartRef.current);
-    svg.selectAll("*").remove();
+//     const y = d3
+//       .scaleLinear()
+//       .domain([1300, 400]) // Reverse scale for F1
+//       .range([margin.top, height - margin.bottom]);
 
-    svg
-      .attr("viewBox", [0, 0, width, height])
-      .attr("width", width)
-      .attr("height", height)
-      .attr("style", "max-width: 100%; height: auto;");
+//     const color = d3
+//       .scaleOrdinal()
+//       .domain(["Mandarin Speaker", "American Speaker"])
+//       .range(["darkgoldenrod", "black"]);
 
-    svg
-      .append("g")
-      .attr("transform", `translate(0,${height - marginBottom})`)
-      .call(d3.axisBottom(x).ticks(width / 80))
-      .call((g) => g.select(".domain").remove())
-      .call((g) =>
-        g
-          .append("text")
-          .attr("x", width)
-          .attr("y", marginBottom - 4)
-          .attr("fill", "currentColor")
-          .attr("text-anchor", "end")
-          .text("Sepal length (cm) →")
-      );
+//     // Axes
+//     svg
+//       .append("g")
+//       .attr("transform", `translate(0,${height - margin.bottom})`)
+//       .call(d3.axisBottom(x));
 
-    svg
-      .append("g")
-      .attr("transform", `translate(${marginLeft},0)`)
-      .call(d3.axisLeft(y))
-      .call((g) => g.select(".domain").remove())
-      .call((g) =>
-        g
-          .append("text")
-          .attr("x", -marginLeft)
-          .attr("y", 10)
-          .attr("fill", "currentColor")
-          .attr("text-anchor", "start")
-          .text("↑ Sepal width (cm)")
-      );
+//     svg
+//       .append("g")
+//       .attr("transform", `translate(${margin.left},0)`)
+//       .call(d3.axisLeft(y));
 
-    svg
-      .append("g")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .call((g) =>
-        g
-          .append("g")
-          .selectAll("line")
-          .data(x.ticks())
-          .join("line")
-          .attr("x1", (d) => 0.5 + x(d))
-          .attr("x2", (d) => 0.5 + x(d))
-          .attr("y1", marginTop)
-          .attr("y2", height - marginBottom)
-      )
-      .call((g) =>
-        g
-          .append("g")
-          .selectAll("line")
-          .data(y.ticks())
-          .join("line")
-          .attr("y1", (d) => 0.5 + y(d))
-          .attr("y2", (d) => 0.5 + y(d))
-          .attr("x1", marginLeft)
-          .attr("x2", width - marginRight)
-      );
+//     // Group data by speaker
+//     const groupedData = d3.group(data, (d) => d.speaker);
 
-    svg
-      .append("g")
-      .attr("stroke-width", 1.5)
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
-      .selectAll("path")
-      .data(data)
-      .join("path")
-      .attr(
-        "transform",
-        (d) => `translate(${x(d.sepalLength)},${y(d.sepalWidth)})`
-      )
-      .attr("fill", (d) => color(d.species))
-      .attr("d", (d) => shape(d.species));
-  }, [data]);
+//     // Plot points
+//     groupedData.forEach((group, key) => {
+//       svg
+//         .append("g")
+//         .selectAll("circle")
+//         .data(group)
+//         .join("circle")
+//         .attr("cx", (d) => x(d.f2))
+//         .attr("cy", (d) => y(d.f1))
+//         .attr("r", 3)
+//         .attr("fill", color(key))
+//         .attr("opacity", 0.5);
+//     });
 
-  return <svg ref={chartRef}></svg>;
-};
+//     // Compute and draw ellipses for each group
+//     groupedData.forEach((group, key) => {
+//       const meanF1 = d3.mean(group, (d) => d.f1);
+//       const meanF2 = d3.mean(group, (d) => d.f2);
 
-const data = [
-  { sepalLength: 5.1, sepalWidth: 3.5, species: "setosa" },
-  { sepalLength: 4.9, sepalWidth: 3.0, species: "setosa" },
-  { sepalLength: 4.7, sepalWidth: 3.2, species: "setosa" },
-  { sepalLength: 7.0, sepalWidth: 3.2, species: "versicolor" },
-  { sepalLength: 6.4, sepalWidth: 3.2, species: "versicolor" },
-  { sepalLength: 6.9, sepalWidth: 3.1, species: "versicolor" },
-  { sepalLength: 6.3, sepalWidth: 3.3, species: "virginica" },
-  { sepalLength: 5.8, sepalWidth: 2.7, species: "virginica" },
-  { sepalLength: 7.1, sepalWidth: 3.0, species: "virginica" },
-];
+//       const covMatrix = d3.transpose([
+//         group.map((d) => d.f2 - meanF2),
+//         group.map((d) => d.f1 - meanF1),
+//       ]);
+
+//       const covariance = d3.transpose(covMatrix).map((row) => {
+//         return d3.mean(row.map((value, i) => value * row[i]));
+//       });
+
+//       const [eigenValues, eigenVectors] = numeric.eig(covariance);
+//       const angle = Math.atan2(eigenVectors[1][0], eigenVectors[0][0]);
+
+//       svg
+//         .append("ellipse")
+//         .attr("cx", x(meanF2))
+//         .attr("cy", y(meanF1))
+//         .attr("rx", eigenValues[0] * 2)
+//         .attr("ry", eigenValues[1] * 2)
+//         .attr(
+//           "transform",
+//           `rotate(${(angle * 180) / Math.PI},${x(meanF2)},${y(meanF1)})`
+//         )
+//         .attr("stroke", color(key))
+//         .attr("fill", "none")
+//         .attr("stroke-width", 1.5);
+//     });
+//   }, [data]);
+
+//   return <svg ref={chartRef}></svg>;
+// };
+
+// export default function VizPage() {
+//   const [data, setData] = useState([]);
+
+//   useEffect(() => {
+//     const loadData = async () => {
+//       const csvData = await d3.csv("/static/csv/em.csv", (d) => ({
+//         f1: +d.mel_F1_2tier,
+//         f2: +d.mel_F2_2tier,
+//         speaker: d.speaker,
+//       }));
+//       setData(csvData);
+//     };
+
+//     loadData();
+//   }, []);
+
+//   return (
+//     <div>
+//       <h1>Vowel Space (Mels)</h1>
+//       <ScatterPlotWithEllipses data={data} />
+//     </div>
+//   );
+// }
 
 export default function VizPage() {
   return (
     <div>
-      <h1>
-        Vowel space. The ellipses illustrate the spread of the vowel /æ/ across
-        F1 and F2 values with 95% confidence intervals by speaker group.{" "}
-      </h1>
-      <ScatterPlot data={data} />
+      <h1>Vowel Space (Mels)</h1>
     </div>
   );
 }
