@@ -3,10 +3,9 @@ import Link from "./Link";
 
 const headerNavLinks = [
   { href: "/about", title: "about" },
-  { href: "/experiences", title: "experiences" },
   { href: "/publications", title: "publications" },
   { href: "/visualizations", title: "visualizations" },
-  { href: "/static/pdf/yifang-cv.pdf", title: "cv" },
+  { href: "/static/pdf/cv_dec25.pdf", title: "cv" },
 ];
 
 export default function NavBar() {
