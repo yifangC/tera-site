@@ -1,0 +1,47 @@
+import AboutSection from "@/app/components/AboutMe";
+import RecentNews from "@/app/components/RecentNews";
+
+import NextImage from "next/image";
+import { Quicksand } from "next/font/google";
+
+//import News from "@/app/ui/News";
+import SocialIcons from "@/app/ui/SocialIcons";
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+export default async function Page() {
+  return (
+    <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+        <div className="flex flex-col items-center pt-8">
+          <NextImage
+            // className="h-64 w-64"
+            className="h-70 w-70 rounded shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300"
+            src={"/static/images/yi-fang_jpeg.jpg"}
+            width={800}
+            height={800}
+          />
+          <div className="flex flex-col items-center">
+            <div
+              className={`pt-4 pb-2 text-xl text-gray-700 dark:text-gray-300 ${quicksand.className}`}
+            ></div>
+
+            <div className="flex flex-row space-x-3 pt-6">
+              <SocialIcons />
+            </div>
+          </div>
+        </div>
+
+        {/* Start of main content */}
+        <div className="prose max-w-none pt-8 pb-2 dark:prose-dark xl:col-span-2">
+          <AboutSection />
+          <RecentNews />
+        </div>
+        {/* End of main content */}
+      </div>
+    </div>
+  );
+}
