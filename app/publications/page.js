@@ -1,9 +1,5 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
-
 import MarkdownStyles from "@/app/components/markdownStyles";
+import PublicationsContent from "@/app/content/publications.mdx";
 
 import { Rubik } from "next/font/google";
 
@@ -52,7 +48,7 @@ const PublicationEntry = ({
   conference,
   conferenceFullName,
   authors,
-  components,
+  links,
   highlightAuthors = [],
 }) => {
   return (
@@ -86,7 +82,7 @@ const PublicationEntry = ({
         </p>
 
         <div className="flex flex-row space-x-3 pt-4">
-          {components.map((component, index) => (
+          {links.map((component, index) => (
             <CustomAnchorLink
               key={index}
               text={component.title}
@@ -99,22 +95,10 @@ const PublicationEntry = ({
   );
 };
 
-export default async function Publications() {
-  const filePath = path.join(
-    process.cwd(),
-    "app",
-    "content",
-    "publications.mdx"
-  );
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data: frontmatter, content } = matter(fileContents);
-
+export default function Publications() {
   return (
     <div className="prose dark:prose-dark">
-      <MDXRemote
-        source={content}
-        components={{ ...MarkdownStyles, PublicationEntry }}
-      />
+      <PublicationsContent components={{ ...MarkdownStyles, PublicationEntry }} />
     </div>
   );
 }
