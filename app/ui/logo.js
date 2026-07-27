@@ -17,7 +17,7 @@ const DynamicLink = ({ className, inconsolata }) => {
       ) : (
         <>
           <span className="font-bold">Yi-Fang</span>{" "}
-          <span className="font-normal">Tera Cheng</span>
+          <span className="font-normal">Cheng</span>
         </>
       )}
     </Link>
