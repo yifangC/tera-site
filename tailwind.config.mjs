@@ -1,8 +1,8 @@
-import type { Config } from 'tailwindcss';
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
+import forms from '@tailwindcss/forms';
 
-const config: Config = {
+const config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -41,6 +41,6 @@ const config: Config = {
     },
   },
 
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [forms],
 };
 export default config;

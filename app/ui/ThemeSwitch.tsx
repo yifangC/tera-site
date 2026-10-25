@@ -1,27 +1,27 @@
-import React from "react"
-import { useTheme } from "next-themes"
-import { IconContext } from "react-icons"
-import { FaSun, FaMoon } from 'react-icons/fa'
+'use client';
 
-const Button = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
+import { useTheme } from 'next-themes';
+import { IconContext } from 'react-icons';
+import { FaSun, FaMoon } from 'react-icons/fa';
+
+export default function ThemeSwitch() {
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="ml-1 mr-1 h-16 w-16 rounded p-1 sm:ml-4"
-      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-    > 
-      <IconContext.Provider value={{ className: "theme-switch" }}> 
-        <div>
-          {(theme === 'dark') ?  (<FaSun />) : (<FaMoon />) }
-        </div>
+      className="ml-1 mr-1 h-16 w-16 rounded-sm p-1 sm:ml-4"
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+    >
+      <IconContext.Provider value={{ className: 'theme-switch' }}>
+        <span className="hidden dark:inline">
+          <FaSun />
+        </span>
+        <span className="inline dark:hidden">
+          <FaMoon />
+        </span>
       </IconContext.Provider>
-        
     </button>
-  )
+  );
 }
-
-export default Button;

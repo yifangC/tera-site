@@ -14,7 +14,7 @@ const CustomAnchorLink = ({ text, link }) => {
   const borderStyles =
     "border border-solid border-2 border-primary-600 dark:border-pink-600";
   const textStyles = "text-primary-600 dark:text-pink-600";
-  const spacingStyles = "px-4 rounded";
+  const spacingStyles = "px-4 rounded-sm";
   const transitionStyles = "transition-colors duration-300";
   const hoverStyles =
     "hover:bg-primary-600 dark:hover:bg-pink-600 hover:text-white dark:hover:text-gray-300";
@@ -32,7 +32,7 @@ const CustomAnchorLink = ({ text, link }) => {
 const ConferenceBadge = ({ conference }) => {
   const bgStyles = "bg-primary-600 text-white dark:bg-pink-600 dark:text-gray-300"; 
   const fontStyles = `font-bold text-sm ${rubik.className}`;
-  const spacingStyles = "px-4 py-0.5 rounded";
+  const spacingStyles = "px-4 py-0.5 rounded-sm";
   const layoutStyles = "mr-4";
   const shadowStyles = "shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300";
 
@@ -52,7 +52,7 @@ const PublicationEntry = ({
   highlightAuthors = [],
 }) => {
   return (
-    <div className="publication-entry mt-12 mb-12 grid grid-cols-[1fr,3fr] gap-4">
+    <div className="publication-entry mt-12 mb-12 grid grid-cols-[1fr_3fr] gap-4">
       {/* Conference Badge */}
       <div className="flex items-start mt-0.5">
         <ConferenceBadge conference={conference} />

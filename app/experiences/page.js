@@ -44,7 +44,7 @@ const rubik = Rubik({
 const ExperienceCard = ({ logo, company, position, years }) => {
   return (
     <div>
-      <div className="experience-entry mt-2 mb-4 grid grid-cols-[1fr,2fr]">
+      <div className="experience-entry mt-2 mb-4 grid grid-cols-[1fr_2fr]">
         <div className="flex items-start justify-center mt-0.5">
           <img
             src={logo}

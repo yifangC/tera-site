@@ -18,7 +18,7 @@ const rubik = Rubik({
 const DateBadge = ({ date }) => {
   const bgStyles = "bg-primary-600 text-white dark:bg-pink-600 dark:text-gray-300";  
   const fontStyles = `font-bold text-md ${rubik.className}`;
-  const spacingStyles = "px-4 py-0.5 rounded";
+  const spacingStyles = "px-4 py-0.5 rounded-sm";
   const layoutStyles = "mr-4 mt-1";
   const shadowStyles = "shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300";
 

@@ -19,8 +19,9 @@ export default async function Page() {
         <div className="flex flex-col items-center pt-8">
           <NextImage
             // className="h-64 w-64"
-            className="h-70 w-70 rounded shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300"
+            className="h-auto max-w-full rounded-sm shadow-lg shadow-gray-500/70 hover:shadow-xl hover:shadow-gray-500/90 transition-shadow duration-300"
             src={"/static/images/yi-fang_jpeg.jpg"}
+            alt="Yi-Fang Cheng"
             width={800}
             height={800}
           />
