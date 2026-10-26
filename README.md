@@ -1,25 +1,10 @@
 # Yi-Fang Cheng — Personal Website
 
-Personal academic website for Yi-Fang Cheng, featuring a biography, research publications, conference presentations, recent news, and a downloadable CV.
+Academic website for Yi-Fang Cheng at [yifangcheng.me](https://yifangcheng.me/about). This repository, [yifangC/tera-site](https://github.com/yifangC/tera-site), is the current project; the separate `yifangcheng.me` repository is an older version.
 
-- Website: [yifangcheng.me](https://yifangcheng.me/about)
-- Repository: [yifangC/tera-site](https://github.com/yifangC/tera-site)
+The site separates **content** (plain Markdown and YAML), **content validation**, and **presentation** (Next.js/React components). Humans and agents use the same files and checks. Routine updates do not require editing JSX or application code.
 
-This is the project whose About content and navigation match the published website. The separate `yifangcheng.me` repository is an older version. Work on the current site belongs in `tera-site`.
-
-## Technology
-
-- Next.js 16 App Router and React 19, with JavaScript and TypeScript components.
-- MDX for editable content, using `@next/mdx`, `next-mdx-remote`, and `gray-matter`.
-- Tailwind CSS 4 and custom CSS for layout, typography, colors, and hover effects.
-- `next-themes` for light and dark modes; `react-icons` for icons.
-- `next/font/google` for fonts and Vercel Analytics in the shared layout.
-
-The current pages read content from local files. They do not require a database, authentication, or a CMS.
-
-## Local development
-
-Run these commands from the repository root:
+## Run locally
 
 ```sh
 nvm install
@@ -28,141 +13,98 @@ npm ci
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). The home route redirects to `/about`.
+Open [localhost:3000/about](http://localhost:3000/about). `.nvmrc` selects Node 26, which is also used by GitHub Actions. The application supports Node 24 or newer for hosting compatibility. Local development uses Next.js’s supported Webpack mode to avoid the repeated reloads observed with Turbopack in this project. Production builds still use the default Next.js bundler. No database, CMS, authentication, or environment variables are required. Fresh builds may require internet access for Google fonts.
 
-Node.js 24 or newer is required by this project. `.nvmrc` selects the latest major release, Node 26; the `nvm` commands above use that version if you have nvm installed. Node 24 remains supported for hosts such as Vercel, whose current runtime options are documented in [Supported Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions). Otherwise, install a compatible Node.js runtime before running the npm commands.
+## Update content
 
-No environment variables are required by the current page code. `.env.example` contains authentication settings left over from the original tutorial. Google fonts are downloaded through `next/font/google`, so a fresh build may require network access.
+See **[the editing guide](docs/editing-content.md)** for field definitions, examples, GitHub editing, and publishing instructions.
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the development server. |
-| `npm run build` | Create a production build. |
-| `npm start` | Serve an existing production build. |
-| `npm run typecheck` | Check TypeScript types without emitting files. |
+| Update                                          | File or folder                                              |
+| ----------------------------------------------- | ----------------------------------------------------------- |
+| Biography                                       | `content/pages/about.md`                                    |
+| News                                            | `content/news/`                                             |
+| Publications                                    | `content/publications/`                                     |
+| Conference presentations                        | `content/presentations/`                                    |
+| Professional experience                         | `content/experience/`                                       |
+| Education                                       | `content/education/`                                        |
+| Profile, social links, CV, portrait, navigation | `content/site.yaml`                                         |
+| Notes and visualization text                    | `content/pages/notes.md`, `content/pages/visualizations.md` |
 
-There are currently no automated test or lint scripts in `package.json`.
+Every collection entry is an independent `.md` file with YAML frontmatter. The body supports standard Markdown and GitHub-flavored Markdown. Content contains no HTML, JSX, component names, or styling classes.
 
-Direct dependencies target the latest stable registry releases as checked on October 24, 2026. Major upgrades include Next.js 16.4.3, React 19.3.1, Tailwind CSS 4.3.3, and TypeScript 7.0.2. The lockfile records the resolved dependency tree. A scoped override updates the typography plugin's selector parser to patched version 7.1.7 or newer. The old React 18 resolution pins have been removed. The root theme provider lives inside the page body, and the theme toggle uses the resolved system preference without rendering different server and client icons.
-
-## Pages and navigation
-
-| URL | Current behavior | Source |
-| --- | --- | --- |
-| `/` | Redirects to `/about`. | `app/page.js` |
-| `/about` | Portrait, social links, biography, and recent news. | `app/about/page.js` |
-| `/publications` | Publication entries and conference presentations. | `app/publications/page.js` |
-| `/visualizations` | Under-construction message; the D3 chart implementation is commented out. | `app/visualizations/page.js` |
-| `/experiences` | Experience and education cards; not linked in the main navigation. | `app/experiences/page.js` |
-| `/notes` | Under-construction message; not linked in the main navigation. | `app/notes/page.js` |
-| `/cv` | Incomplete route that renders an empty link to itself. | `app/cv/page.tsx` |
-
-The **cv** menu item opens `/static/pdf/cv_Jul_26.pdf` directly, rather than using the `/cv` route. Menu entries are defined in `app/ui/NavBar.js`.
-
-## Editing content
-
-Most text updates belong in `app/content/`:
-
-| Update | File |
-| --- | --- |
-| Biography and research interests | `app/content/about.mdx` |
-| Recent news | `app/content/recent_news.mdx` |
-| Publications and conference presentations | `app/content/publications.mdx` |
-| Experience and education | `app/content/experiences.mdx` |
-| Email and social profile links | `app/ui/SocialIcons.js` |
-| Navigation labels, destinations, and CV link | `app/ui/NavBar.js` |
-| Portrait and About page arrangement | `app/about/page.js` |
-
-MDX supports ordinary Markdown plus the custom components shown below. Entries display in file order; put newer entries first where appropriate.
-
-### Add a news item
-
-Add a `NewsItem` to `app/content/recent_news.mdx`:
-
-```mdx
-<NewsItem date="Month YYYY">
-  Your announcement, with an optional [link](https://example.com).
-</NewsItem>
-```
-
-The date badge and row layout are implemented in `app/components/RecentNews.js`.
-
-### Add a publication
-
-Add a `PublicationEntry` to `app/content/publications.mdx`:
-
-```mdx
-<PublicationEntry
-  title="Publication title"
-  conference="Venue abbreviation"
-  conferenceFullName="Full venue name or publication status"
-  authors={["Yi-Fang Cheng", "Coauthor Name"]}
-  highlightAuthors={["Yi-Fang Cheng"]}
-  links={[{ title: "Paper", link: "https://example.com/paper" }]}
-/>
-```
-
-Use `links={[]}` when no public link is available. Conference presentations below the publication entries are ordinary Markdown text. The publication component and its badges are defined in `app/publications/page.js`.
-
-### Add experience or education
-
-Add an `ExperienceCard` to the appropriate section in `app/content/experiences.mdx`:
-
-```mdx
-<ExperienceCard
-  logo="/static/logos/purdue.jpeg"
-  company="Organization name"
-  position="Role or degree"
-  years="Start – End"
-/>
-```
-
-The card component is defined in `app/experiences/page.js`.
-
-### Replace the CV or other assets
-
-1. Place the new PDF in `public/static/pdf/`.
-2. Update the CV destination in `app/ui/NavBar.js` if the filename changes.
-3. Check the PDF through the navigation after starting the site.
-
-Files under `public/` are served from the website root. For example, `public/static/pdf/cv_Jul_26.pdf` is available at `/static/pdf/cv_Jul_26.pdf`. Use root-relative paths beginning with `/static/` in content links.
-
-The About portrait is `public/static/images/yi-fang_jpeg.jpg`; the pianist biography is `public/static/pdf/pianist_v1.pdf`. Organization logos live in `public/static/logos/`.
-
-## How the site fits together
-
-`app/layout.js` supplies the shared header, theme provider, footer, favicon links, and analytics. Each route renders its content inside that layout.
-
-The About page uses `app/components/AboutMe.js` and `app/components/RecentNews.js` to read MDX files from disk and render them with `next-mdx-remote/rsc`. The experience page uses the same approach. Publications instead imports its MDX file directly through the `@next/mdx` configuration in `next.config.mjs`.
-
-`app/components/markdownStyles.js` defines shared rendering for Markdown headings, paragraphs, lists, and links. `mdx-components.js` supplies the component mapping for compiled MDX.
-
-Styling is split between Tailwind utility classes in components, theme settings in `tailwind.config.mjs`, and `app/ui/global.css`. The global stylesheet imports Tailwind, explicitly loads the shared configuration with `@config`, and defines custom link animations, icon effects, and other shared styles. PostCSS uses the Tailwind 4 `@tailwindcss/postcss` plugin. Dark mode uses a class on the document; the toggle is in `app/ui/ThemeSwitch.tsx`.
-
-## Verification and publishing
-
-After changing content, preview the affected page with `npm run dev`. Check links and downloads, light and dark themes, and narrow and wide layouts. Before publishing, run:
+Create an entry from a template:
 
 ```sh
-npm run typecheck
-npm run build
-npm start
+npm run content:new -- news my-announcement
+npm run content:new -- publications my-paper
+npm run content:check
 ```
 
-The dependency upgrade was checked with clean installation, TypeScript checking, production builds on Node 24 and Node 26, and browser checks for page rendering, themes, mobile layout, images, and PDF downloads.
+New entries start as drafts. Edit the generated fields and set `draft: false` when ready. Drafts are hidden in local and production pages, but still validated. Dates do not schedule publication. Optional `order` values control placement; otherwise entries sort newest first with deterministic filename ties.
 
-Vercel is connected to this repository and automatically deploys pushes to `main` to the production site. No separate deployment workflow or `vercel.json` is required for this Git integration.
+The CV is currently removed. To restore it, add the updated PDF to `public/static/pdf/`, add a `cv` block with `src` and `label` to `content/site.yaml`, and show its navigation entry. `/cv` redirects to the configured PDF, or returns 404 when `cv` is omitted. See the editing guide for the full example.
 
-To select the hosted Node.js version, open the project in Vercel and go to **Settings → Build and Deployment → Node.js Version**, choose **24.x**, and save. The repository's `package.json` currently declares `engines.node` as `>=24.0.0`; this supports Vercel's Node 24 runtime. The `engines.node` field can override the dashboard setting. `.nvmrc` selects Node 26 for local development and does not set Vercel's runtime.
+## Commands
 
-A runtime setting applies to new deployments. Push the updated project to `main`, or redeploy the latest production deployment from Vercel's **Deployments** tab to apply the setting to the live site.
+| Command                                      | Purpose                                                                 |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| `npm run dev`                                | Start local development. Save content edits and refresh the page.       |
+| `npm run content:new -- <collection> [slug]` | Copy a collection template without overwriting existing files.          |
+| `npm run content:check`                      | Validate content fields, Markdown, local routes/assets, and references. |
+| `npm run lint`                               | Check Next.js, React, and accessibility rules with no warnings allowed. |
+| `npm test`                                   | Run content validation and selection regression tests.                  |
+| `npm run typecheck`                          | Generate route types and run the TypeScript compiler.                   |
+| `npm run build`                              | Validate content and create a production build.                         |
+| `npm start`                                  | Serve the production build.                                             |
+| `npm run check`                              | Run lint, tests, type checking, and the production build.               |
 
-## Existing limitations and tutorial leftovers
+## Project structure
 
-- Navigation is hidden below the `sm` breakpoint, with no replacement mobile menu.
-- The Google Scholar link in `app/ui/SocialIcons.js` has an empty destination.
-- `/visualizations`, `/notes`, and `/cv` are unfinished as described above.
-- The layout references `/feed.xml` and a Safari pinned-tab SVG that are not present in the repository.
-- `app/ui/News.js` is an older, unused news component. Edit `app/content/recent_news.mdx` for the current About page.
-- `app/.lib/`, `scripts/seed.js`, and `public/customers/` are leftovers from the Next.js dashboard tutorial. The database helpers and seed script are not part of the active site. The seed script also refers to `app/lib/placeholder-data.js`, while the retained file is under `app/.lib/`; it is not a setup step for this website.
-- D3 and vowel-space CSV files remain for visualization work, but the current visualization page does not load or display them.
+```text
+content/                  # Markdown collections and site.yaml
+app/                      # Routes, server layout, sitemap, robots
+components/content/       # Markdown, cards, lists, links
+components/layout/        # Header, mobile navigation, footer
+components/interactive/   # Theme provider and toggle
+lib/content/              # Schemas, loading, public selection, queries
+templates/                # Starting points for new content
+scripts/                  # Content commands
+tests/                    # Regression tests
+docs/                     # Editing instructions
+public/static/            # Existing images, PDFs, logos, and CSV assets
+.github/workflows/        # Automated checks
+```
+
+## Architecture
+
+- **Content contract:** `lib/content/schemas.ts` defines strict Zod schemas and inferred TypeScript types. Missing fields, unknown keys, bad dates, duplicate YAML keys, empty links, missing local assets, and unknown references fail validation with source filenames.
+- **One loading path:** `lib/content/load.ts` parses YAML and Markdown. `selection.ts` filters drafts and sorts records. The server-only `queries.ts` exposes request-deduplicated queries to pages. There is no process-global content cache, so local refreshes read current files.
+- **One renderer:** `components/content/Markdown.tsx` uses `react-markdown` and `remark-gfm`. HTML/JSX is rejected during validation. Publication, news, career, and presentation layouts receive data instead of executing content as React code.
+- **Server rendering:** route composition, content reads, and the root layout are Server Components. Only theme controls, navigation state, and the local footer clock require client behavior. Published content is prerendered during the production build.
+- **Presentation:** Tailwind CSS 4 and `app/ui/global.css` provide the existing yellow/amber themes, shared typography, and hover effects. Typography and cards adapt to narrow screens. Mobile navigation has an accessible native disclosure menu.
+- **Metadata:** Next.js metadata APIs supply titles, descriptions, canonical URLs, social previews, icons, sitemap, and robots. Draft pages are excluded from the sitemap and unavailable at their routes. Hidden navigation items retain accessible routes unless their page is a draft.
+
+The project uses Next.js 16, React 19, and Zod 4. Type checking uses the TypeScript 7 native compiler. ESLint still needs the TypeScript 6 programmatic API, so the project uses the official side-by-side npm aliases: `@typescript/native` supplies `tsc`, and `typescript` aliases `@typescript/typescript6` for tooling. See [TypeScript's compatibility guidance](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0).
+
+## Routes
+
+| Route                         | Purpose                                                                   |
+| ----------------------------- | ------------------------------------------------------------------------- |
+| `/`                           | Redirect to `/about`.                                                     |
+| `/about`                      | Biography, portrait, social links, and news.                              |
+| `/publications`               | Publication cards and conference presentations.                           |
+| `/experiences`                | Professional experience and education; hidden from navigation by default. |
+| `/cv`                         | Redirect to the configured CV; return 404 when no CV is configured.                     |
+| `/notes`                      | Markdown placeholder; hidden from navigation by default.                  |
+| `/visualizations`             | Markdown placeholder for future interactive research work.                |
+| `/sitemap.xml`, `/robots.txt` | Generated discovery metadata.                                             |
+
+A new collection entry appears automatically on its existing page. A new top-level page still needs a Next.js route. Future interactive visualizations belong in application components; the surrounding prose can continue to use Markdown. Existing CSV assets remain available, but there is no active chart yet.
+
+## Validation and publishing
+
+Run `npm run check` before publishing. GitHub Actions runs the same checks on pushes and pull requests. A build fails on invalid content even when only Markdown files changed. External link syntax is checked, but external availability and fragment anchors are not checked by the build.
+
+Local editing and a production build were verified during the refactor. Hosting settings remain external: confirm the linked repository, production branch, runtime, and preview deployment settings in the hosting dashboard. This repository does not configure a hosting account or automatically authorize publication. Content changes reach production when the hosting workflow rebuilds and deploys the approved branch.
+
+The previous MDX files, duplicate renderers, unused database tutorial code, and tutorial customer images have been removed. The git history retains them. Agent editing instructions live in [AGENTS.md](AGENTS.md).

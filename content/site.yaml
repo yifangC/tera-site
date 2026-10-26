@@ -1,0 +1,43 @@
+name: Yi-Fang Cheng
+shortName: ~/Y.-F.
+url: https://yifangcheng.me
+description: Yi-Fang Cheng — research in bilingualism, phonetics, and human–AI interaction.
+portrait:
+  src: /static/images/yi-fang_jpeg.jpg
+  alt: Yi-Fang Cheng
+  width: 800
+  height: 800
+socials:
+  - label: Email
+    href: mailto:cheng627@purdue.edu
+    icon: email
+  - label: GitHub
+    href: https://github.com/yifangC
+    icon: github
+  - label: LinkedIn
+    href: https://www.linkedin.com/in/yifangchengg/
+    icon: linkedin
+navigation:
+  - label: about
+    href: /about
+    visible: true
+  - label: publications
+    href: /publications
+    visible: true
+  - label: visualizations
+    href: /visualizations
+    visible: true
+  - label: cv
+    href: /cv
+    visible: false
+  - label: experiences
+    href: /experiences
+    visible: false
+  - label: notes
+    href: /notes
+    visible: false
+sections:
+  news: ✨ Recent News ✨
+  presentations: Conference Presentations
+  experience: Experience
+  education: Education

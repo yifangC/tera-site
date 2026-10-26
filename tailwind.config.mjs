@@ -1,18 +1,12 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import colors from 'tailwindcss/colors';
-import forms from '@tailwindcss/forms';
 
 const config = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
   darkMode: 'class',
   theme: {
     extend: {
       gridTemplateColumns: {
-        '13': 'repeat(13, minmax(0, 1fr))',
+        13: 'repeat(13, minmax(0, 1fr))',
       },
       spacing: {
         '9/16': '56.25%',
@@ -29,7 +23,7 @@ const config = {
       colors: {
         primary: colors.yellow,
         pink: colors.amber,
-        gray: colors.neutral
+        gray: colors.neutral,
       },
     },
     keyframes: {
@@ -40,7 +34,5 @@ const config = {
       },
     },
   },
-
-  plugins: [forms],
 };
 export default config;
